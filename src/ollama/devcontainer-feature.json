@@ -1,7 +1,7 @@
 {
     "name": "ollama",
     "id": "ollama",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Installs ollama",
     "documentationURL": "https://github.com/prulloac/devcontainer-features/tree/main/src/ollama",
     "options": {
@@ -12,17 +12,7 @@
             "proposals": ["llama3.2", "llama3.2:3b,nomic-embed-text"]
         }
     },
-    "mounts": [
-        {
-            "source": "ollama-models-${devcontainerId}",
-            "target": "/usr/local/share/ollama",
-            "type": "volume"
-        }
-    ],
-    "containerEnv": {
-        "OLLAMA_MODELS": "/usr/local/share/ollama"
-    },
-    "onCreateCommand": "chown -R \"$_CONTAINER_USER:root\" /usr/local/share/ollama",
+    "onCreateCommand": "/usr/local/share/ollama/init.sh",
     "entrypoint": "ollama serve",
     "installsAfter": [
         "ghcr.io/devcontainers/features/common-utils"
