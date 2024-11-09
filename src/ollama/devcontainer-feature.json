@@ -1,15 +1,25 @@
 {
     "name": "ollama",
     "id": "ollama",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Installs ollama",
     "documentationURL": "https://github.com/prulloac/devcontainer-features/tree/main/src/ollama",
     "options": {
         "pull": {
             "type":"string",
             "default": "",
-            "description": "comma separated list of models to pull"
+            "description": "Comma-separated list of models to pull"
         }
+    },
+    "mounts": [
+        {
+            "source": "ollama-models-${devcontainerId}",
+            "target": "/usr/local/share/ollama",
+            "type": "volume"
+        }
+    ],
+    "containerEnv": {
+        "OLLAMA_MODELS": "/usr/local/share/ollama"
     },
     "entrypoint": "ollama serve",
     "installsAfter": [
