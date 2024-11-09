@@ -30,10 +30,7 @@ cat << "EOF" > "/usr/local/share/ollama/init.sh"
 #!/bin/sh
 set -e
 echo "Pulling models" 1>&2
-ollama serve &
-ollama_pid=$!
-trap 'kill $ollama_pid' EXIT
-sleep 3
+# Ollama should already be running
 cat /usr/local/share/ollama/models.txt | xargs -I % sh -c "ollama pull %"
 EOF
 chmod +x "/usr/local/share/ollama/init.sh"
