@@ -6,9 +6,10 @@
     "documentationURL": "https://github.com/prulloac/devcontainer-features/tree/main/src/ollama",
     "options": {
         "pull": {
-            "type":"string",
+            "type": "string",
             "default": "",
-            "description": "Comma-separated list of models to pull"
+            "description": "Comma-separated list of models to pull",
+            "proposals": ["llama3.2", "llama3.2:3b,nomic-embed-text"]
         }
     },
     "mounts": [
@@ -21,6 +22,7 @@
     "containerEnv": {
         "OLLAMA_MODELS": "/usr/local/share/ollama"
     },
+    "postStartCommand": "/usr/local/share/ollama/container-post-start.sh",
     "entrypoint": "ollama serve",
     "installsAfter": [
         "ghcr.io/devcontainers/features/common-utils"

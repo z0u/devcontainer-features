@@ -4,24 +4,6 @@ set -e
 
 PULL=${PULL:-""}
 
-# From https://github.com/itsmechlark/features/blob/0e7c373cd84e8dfd6be03594815e4304855d3911/src/postgresql/install.sh#L24
-# Determine the appropriate non-root user
-if [ "${USERNAME}" = "auto" ] || [ "${USERNAME}" = "automatic" ]; then
-    USERNAME=""
-    POSSIBLE_USERS=("vscode" "node" "codespace" "$(awk -v val=1000 -F ":" '$3==val{print $1}' /etc/passwd)")
-    for CURRENT_USER in "${POSSIBLE_USERS[@]}"; do
-        if id -u ${CURRENT_USER} > /dev/null 2>&1; then
-            USERNAME=${CURRENT_USER}
-            break
-        fi
-    done
-    if [ "${USERNAME}" = "" ]; then
-        USERNAME=root
-    fi
-elif [ "${USERNAME}" = "none" ] || ! id -u ${USERNAME} > /dev/null 2>&1; then
-    USERNAME=root
-fi
-
 # Checks if packages are installed and installs them if not
 check_packages() {
 	if ! dpkg -s "$@" >/dev/null 2>&1; then
@@ -48,6 +30,11 @@ if [ "$PULL" != "none" ] && [ "$PULL" != "" ]; then
     echo $PULL | tr ',' '\n' | xargs -I % sh -c "ollama pull %"
 fi
 
-chown --preserve-root --recursive "${USERNAME}:root" "$OLLAMA_MODELS"
+tee "${OLLAMA_MODELS}/container-post-start.sh" > /dev/null << EOF
+#!/bin/sh
+set -e
+chown --recursive "$_CONTAINER_USER:root" "$OLLAMA_MODELS"
+EOF
+chmod +x "${OLLAMA_MODELS}/container-post-start.sh"
 
 echo 'Done!'
