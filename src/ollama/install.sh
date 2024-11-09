@@ -30,11 +30,4 @@ if [ "$PULL" != "none" ] && [ "$PULL" != "" ]; then
     echo $PULL | tr ',' '\n' | xargs -I % sh -c "ollama pull %"
 fi
 
-tee "${OLLAMA_MODELS}/container-post-start.sh" > /dev/null << EOF
-#!/bin/sh
-set -e
-chown --recursive "$_CONTAINER_USER:root" "$OLLAMA_MODELS"
-EOF
-chmod +x "${OLLAMA_MODELS}/container-post-start.sh"
-
 echo 'Done!'

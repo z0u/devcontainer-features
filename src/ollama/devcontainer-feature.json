@@ -1,7 +1,7 @@
 {
     "name": "ollama",
     "id": "ollama",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Installs ollama",
     "documentationURL": "https://github.com/prulloac/devcontainer-features/tree/main/src/ollama",
     "options": {
@@ -22,7 +22,7 @@
     "containerEnv": {
         "OLLAMA_MODELS": "/usr/local/share/ollama"
     },
-    "postStartCommand": "/usr/local/share/ollama/container-post-start.sh",
+    "onCreateCommand": "chown -R \"$_CONTAINER_USER:root\" /usr/local/share/ollama",
     "entrypoint": "ollama serve",
     "installsAfter": [
         "ghcr.io/devcontainers/features/common-utils"
