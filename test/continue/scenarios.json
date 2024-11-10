@@ -1,0 +1,9 @@
+{
+    "serve_and_pull": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "continue": {}
+        },
+        "remoteUser": "vscode"
+    }
+}
