@@ -16,6 +16,7 @@ jobs:
     strategy:
       matrix:
         features:
+          - continue
           - ollama
         baseImage:
           - debian:latest

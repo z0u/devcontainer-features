@@ -1,0 +1,31 @@
+{
+    "name": "Continue / Ollama",
+    "id": "continue",
+    "version": "1.0.0",
+    "description": "Configures Continue to use local models hosted in Ollama",
+    "documentationURL": "https://github.com/z0u/devcontainer-features/tree/main/src/continue",
+    "options": {
+        "chatModel": {
+            "type": "string",
+            "default": "llama3.2:3b",
+            "description": "The model to use for chat completions"
+        },
+        "autocompleteModel": {
+            "type": "string",
+            "default": "starcoder2:3b",
+            "description": "The model to use for autocompletion"
+        },
+        "embeddingModel": {
+            "type": "string",
+            "default": "nomic-embed-text",
+            "description": "The model to use to generate embeddings"
+        }
+    },
+    "onCreateCommand": "/usr/local/share/continue/init.sh",
+    "dependsOn": {
+        "ollama:1": {}
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
+}

@@ -16,6 +16,7 @@ This repository is structured to support the development of Dev Container featur
 
 ## Current Features
 
+- **continue**: [Continue](https://www.continue.dev/) / [ollama](https://ollama.ai/) — open-source AI code assistant with local models.
 - **ollama**: [ollama](https://ollama.ai/) Run AI models locally with ollama's CLI.
 
 ## Development and Testing
