@@ -1,7 +1,7 @@
 {
     "name": "Continue / Ollama",
     "id": "continue",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Configures Continue to use local models hosted in Ollama",
     "documentationURL": "https://github.com/z0u/devcontainer-features/tree/main/src/continue",
     "options": {

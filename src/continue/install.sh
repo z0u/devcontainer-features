@@ -39,5 +39,3 @@ mkdir -p ~/.continue
 cp -v /usr/local/share/continue/config.json ~/.continue/config.json
 EOF
 chmod +x "/usr/local/share/continue/init.sh"
-
-.continuerc.json
