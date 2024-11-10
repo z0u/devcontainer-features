@@ -23,7 +23,7 @@
     },
     "onCreateCommand": "/usr/local/share/continue/init.sh",
     "dependsOn": {
-        "ollama:1": {}
+        "ghcr.io/prulloac/devcontainer-features/ollama:1": {}
     },
     "installsAfter": [
         "ghcr.io/devcontainers/features/common-utils"
